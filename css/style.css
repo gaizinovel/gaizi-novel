@@ -694,7 +694,6 @@ body {
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 20px;
-    box-shadow: 0 0 20px rgba(255,107,53,0.3);
 }
 
 @keyframes spin {
@@ -1099,7 +1098,7 @@ body {
 
 .comment-input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+    box-shadow: 0 0 0 3px rgba(232,90,79,0.1);
 }
 
 .comment-input::placeholder {
@@ -1154,7 +1153,7 @@ body {
 }
 
 .comment-item:hover {
-    border-color: rgba(255,107,53,0.2);
+    border-color: rgba(232,90,79,0.15);
 }
 
 .comment-item .author-avatar {
