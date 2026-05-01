@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>盖子小说 - 发现好文�?/title>
-    <meta name="description" content="盖子小说，文字创作者分享平台，发现优质文章、小说、文案、博�?>
+    <title>盖子小说 - 发现好文章</title>
+    <meta name="description" content="盖子小说，文字创作者分享平台，发现优质文章、小说、文案、博客">
     <meta name="keywords" content="盖子小说,小说,文章,文案,博客,文字创作,免费小说阅读">
     <meta name="author" content="盖子小说">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://gaizinovel.github.io/gaizi-novel/">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -24,7 +21,7 @@
             </a>
             
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜索标题、简�?.." autocomplete="off">
+                <input type="text" id="searchInput" placeholder="搜索标题、简介..." autocomplete="off">
                 <button class="search-btn" onclick="search()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -44,12 +41,12 @@
         <div class="pinned-container">
             <span class="pinned-label">置顶</span>
             <div class="pinned-track" id="pinnedTrack"></div>
-            <button class="pinned-arrow pinned-prev" onclick="prevPinned()">�?/button>
-            <button class="pinned-arrow pinned-next" onclick="nextPinned()">�?/button>
+            <button class="pinned-arrow pinned-prev" onclick="prevPinned()">◀</button>
+            <button class="pinned-arrow pinned-next" onclick="nextPinned()">▶</button>
         </div>
     </section>
 
-    <!-- 筛选标�?-->
+    <!-- 筛选标签 -->
     <section class="filter-bar">
         <div class="filter-content">
             <button class="filter-tag active" data-type="all" onclick="filterByType('all')">全部</button>
@@ -64,21 +61,21 @@
     <main class="main-content">
         <div class="content-container">
             <div class="content-list" id="contentList">
-                <!-- 动态加载内容卡�?-->
+                <!-- 动态加载内容卡片 -->
             </div>
             
-            <!-- 空状�?-->
+            <!-- 空状态 -->
             <div class="empty-state" id="emptyState" style="display: none;">
                 <div class="empty-icon">📝</div>
                 <h3>暂无内容</h3>
-                <p>还没有人分享作品，成为第一个分享者吧�?/p>
+                <p>还没有人分享作品，成为第一个分享者吧！</p>
                 <button class="btn btn-primary" onclick="openPublishModal()" id="emptyPublishBtn">立即分享</button>
             </div>
             
-            <!-- 加载�?-->
+            <!-- 加载中 -->
             <div class="loading-state" id="loadingState">
                 <div class="spinner"></div>
-                <p>加载�?..</p>
+                <p>加载中...</p>
             </div>
             
             <!-- 加载更多 -->
@@ -91,7 +88,7 @@
     <!-- 底部 -->
     <footer class="footer">
         <div class="footer-content">
-            <p>© 2026 盖子小说 · 用心发现好文�?/p>
+            <p>© 2026 盖子小说 · 用心发现好文</p>
         </div>
     </footer>
 
@@ -103,25 +100,25 @@
             
             <div class="login-header">
                 <h2>登录 / 注册</h2>
-                <p>手机号验证即可参�?/p>
+                <p>手机号验证即可参与</p>
             </div>
             
             <div class="login-form" id="phoneStep">
                 <div class="form-group">
-                    <label>手机�?/label>
+                    <label>手机号</label>
                     <div class="phone-input">
                         <span class="phone-prefix">+86</span>
                         <input type="tel" id="phoneInput" placeholder="请输入手机号" maxlength="11">
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block" onclick="sendCode()">获取验证�?/button>
+                <button class="btn btn-primary btn-block" onclick="sendCode()">获取验证码</button>
             </div>
             
             <div class="login-form" id="codeStep" style="display: none;">
                 <div class="form-group">
-                    <label>验证�?/label>
+                    <label>验证码</label>
                     <div class="code-input-group">
-                        <input type="text" id="codeInput" placeholder="请输�?位验证码" maxlength="6">
+                        <input type="text" id="codeInput" placeholder="请输入6位验证码" maxlength="6">
                         <button class="btn btn-secondary" id="resendBtn" onclick="sendCode()">重新获取</button>
                     </div>
                 </div>
@@ -164,19 +161,19 @@
                 
                 <div class="form-group">
                     <label>链接 <span class="required">*</span></label>
-                    <input type="url" id="urlInput" placeholder="粘贴你的作品链接（不支持视频平台�? required>
+                    <input type="url" id="urlInput" placeholder="粘贴你的作品链接" required>
                     <p class="form-hint">支持：微信公众号、知乎、简书、起点、晋江等文字平台</p>
                 </div>
                 
                 <div class="form-group">
-                    <label>简�?<span class="required">*</span></label>
+                    <label>简介 <span class="required">*</span></label>
                     <textarea id="introInput" placeholder="介绍一下你的作品（20-500字），让读者感兴趣" required minlength="20" maxlength="500"></textarea>
                     <p class="char-count"><span id="charCount">0</span>/500</p>
                 </div>
                 
                 <div class="form-group">
                     <label>标签</label>
-                    <input type="text" id="tagsInput" placeholder="添加标签，用逗号分隔（可选，最�?个）">
+                    <input type="text" id="tagsInput" placeholder="添加标签，用逗号分隔（可选，最多5个）">
                 </div>
                 
                 <button type="submit" class="btn btn-primary btn-block">发布作品</button>
@@ -191,7 +188,7 @@
             <button class="modal-close" onclick="closeDetailModal()">×</button>
             
             <div class="detail-content" id="detailContent">
-                <!-- 动态加�?-->
+                <!-- 动态加载 -->
             </div>
         </div>
     </div>
