@@ -163,12 +163,45 @@ function renderContents() {
     if (state.currentFilter === 'ranking') {
         // 热榜：九宫格卡片，混合新闻+热门用户内容
         html = renderRankingGrid();
+    } else if (state.currentFilter === 'blog') {
+        // 博客：跑马灯 + 置顶内容
+        html = renderBlogMarquee() + renderUserList();
     } else {
         // 其他：列表式展示用户内容
         html = renderUserList();
     }
     
     container.innerHTML = html || '<div class="empty-state"><p>暂无内容</p><p style="margin-top:10px"><button class="btn btn-primary" onclick="openPublishModal()">✏️ 分享第一篇</button></p></div>';
+}
+
+// ===== 博客跑马灯 =====
+function renderBlogMarquee() {
+    // 获取置顶的博客内容
+    const pinnedBlogs = state.userContents.filter(c => c.type === 'blog' && c.pinned);
+    
+    // 如果没有置顶内容，显示默认欢迎语
+    if (pinnedBlogs.length === 0) {
+        return `
+            <div class="blog-marquee">
+                <div class="blog-marquee-content">
+                    <span>🎉 欢迎来到博客专区！分享你的思考与见解</span>
+                    <span>✨ 置顶功能：勾选"置顶此内容"让你的文章在此滚动展示</span>
+                    <span>📝 优质博客将被推荐到热榜</span>
+                </div>
+            </div>
+        `;
+    }
+    
+    // 有置顶内容，滚动展示
+    const items = pinnedBlogs.map(b => `<span onclick="openDetailModal('${b.id}')" style="cursor:pointer;">📌 ${escapeHtml(b.title)} — ${escapeHtml(b.author)}</span>`).join('');
+    // 复制一份实现无缝滚动
+    return `
+        <div class="blog-marquee">
+            <div class="blog-marquee-content">
+                ${items}${items}
+            </div>
+        </div>
+    `;
 }
 
 // ===== 热榜九宫格 =====
