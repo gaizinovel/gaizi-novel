@@ -65,13 +65,12 @@ function setupRecaptcha() {
 }
 
 function openLoginModal() {
-    if (state.user) {
-        toggleUserDropdown();
-        return;
-    }
-    document.getElementById('loginModal').classList.add('show');
-    document.getElementById('phoneStep').style.display = 'block';
-    document.getElementById('codeStep').style.display = 'none';
+    // 模拟登录：直接设为已登录状态（本地模式）
+    state.user = { uid: 'visitor_' + Date.now(), phoneNumber: '' };
+    localStorage.setItem('gaizi_user', JSON.stringify(state.user));
+    closeLoginModal();
+    showToast('已登录（游客模式）', 'success');
+    renderContents();
 }
 
 function closeLoginModal() {
@@ -410,10 +409,9 @@ function updatePinnedSlider() {
 
 // ===== 发布内容 =====
 function openPublishModal() {
+    // 本地模式发布：不需要登录
     if (!state.user) {
-        showToast('请先登录', 'error');
-        openLoginModal();
-        return;
+        state.user = { uid: 'visitor', phoneNumber: '' };
     }
     document.getElementById('publishModal').classList.add('show');
 }
