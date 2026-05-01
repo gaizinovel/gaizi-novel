@@ -203,30 +203,40 @@ body {
     gap: 12px;
     overflow-x: auto;
     align-items: center;
-    justify-content: space-between;
 }
 
 .filter-tags {
     display: flex;
     gap: 12px;
+    align-items: center;
 }
 
-/* 标签栏右侧跑马灯 */
-.filter-marquee {
-    flex: 1;
-    max-width: 400px;
-    margin-left: 20px;
+/* 博客按钮旁边的跑马灯 */
+.blog-marquee-inline {
+    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-left: 12px;
+    max-width: 320px;
 }
 
-.filter-marquee .blog-marquee {
-    margin-bottom: 0;
-    padding: 6px 0;
+.blog-marquee-inline-content {
+    display: flex;
+    animation: blogMarqueeInline 12s linear infinite;
+    white-space: nowrap;
+}
+
+.blog-marquee-inline-content span {
+    padding: 0 20px;
     font-size: 13px;
+    font-weight: 500;
 }
 
-.filter-marquee .blog-marquee-content span {
-    padding: 0 30px;
-    font-size: 13px;
+@keyframes blogMarqueeInline {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .filter-tag {
