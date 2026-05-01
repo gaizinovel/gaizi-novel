@@ -55,6 +55,37 @@ body {
     100% { transform: translateX(-50%); }
 }
 
+/* ===== 博客专区跑马灯 ===== */
+.blog-marquee {
+    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 10px 0;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.blog-marquee-content {
+    display: flex;
+    animation: blogMarquee 15s linear infinite;
+    white-space: nowrap;
+}
+
+.blog-marquee-content span {
+    padding: 0 50px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.blog-marquee-content span:hover {
+    text-decoration: underline;
+}
+
+@keyframes blogMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
 /* ===== 顶部导航 ===== */
 .header {
     position: sticky;
