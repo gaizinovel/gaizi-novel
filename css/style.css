@@ -222,28 +222,32 @@ body {
     display: flex;
     gap: 12px;
     align-items: center;
+    width: 100%;
 }
 
 /* 博客按钮旁边的跑马灯 */
 .blog-marquee-inline {
     background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
     color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 10px 24px;
+    border-radius: 24px;
     overflow: hidden;
-    margin-left: 12px;
-    max-width: 320px;
+    margin-left: auto;
+    flex: 1;
+    max-width: 600px;
+    min-width: 400px;
+    box-shadow: 0 2px 8px rgba(17, 153, 142, 0.3);
 }
 
 .blog-marquee-inline-content {
     display: flex;
-    animation: blogMarqueeInline 12s linear infinite;
+    animation: blogMarqueeInline 15s linear infinite;
     white-space: nowrap;
 }
 
 .blog-marquee-inline-content span {
-    padding: 0 20px;
-    font-size: 13px;
+    padding: 0 40px;
+    font-size: 14px;
     font-weight: 500;
 }
 
