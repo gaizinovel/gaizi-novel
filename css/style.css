@@ -202,6 +202,31 @@ body {
     display: flex;
     gap: 12px;
     overflow-x: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-tags {
+    display: flex;
+    gap: 12px;
+}
+
+/* 标签栏右侧跑马灯 */
+.filter-marquee {
+    flex: 1;
+    max-width: 400px;
+    margin-left: 20px;
+}
+
+.filter-marquee .blog-marquee {
+    margin-bottom: 0;
+    padding: 6px 0;
+    font-size: 13px;
+}
+
+.filter-marquee .blog-marquee-content span {
+    padding: 0 30px;
+    font-size: 13px;
 }
 
 .filter-tag {

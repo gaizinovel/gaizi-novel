@@ -164,14 +164,17 @@ function renderContents() {
         // 热榜：九宫格卡片，混合新闻+热门用户内容
         html = renderRankingGrid();
     } else if (state.currentFilter === 'blog') {
-        // 博客：跑马灯 + 置顶内容
-        html = renderBlogMarquee() + renderUserList();
+        // 博客：显示标签栏跑马灯 + 内容列表
+        html = renderUserList();
     } else {
         // 其他：列表式展示用户内容
         html = renderUserList();
     }
     
     container.innerHTML = html || '<div class="empty-state"><p>暂无内容</p><p style="margin-top:10px"><button class="btn btn-primary" onclick="openPublishModal()">✏️ 分享第一篇</button></p></div>';
+    
+    // 更新标签栏跑马灯显示状态
+    updateFilterMarquee();
 }
 
 // ===== 博客跑马灯 =====
@@ -186,6 +189,22 @@ function renderBlogMarquee() {
             </div>
         </div>
     `;
+}
+
+// ===== 更新标签栏跑马灯 =====
+function updateFilterMarquee() {
+    const marqueeContainer = document.getElementById('filterMarquee');
+    if (!marqueeContainer) return;
+    
+    if (state.currentFilter === 'blog') {
+        // 博客标签：显示跑马灯
+        marqueeContainer.innerHTML = renderBlogMarquee();
+        marqueeContainer.style.display = 'block';
+    } else {
+        // 其他标签：隐藏跑马灯
+        marqueeContainer.innerHTML = '';
+        marqueeContainer.style.display = 'none';
+    }
 }
 
 // ===== 热榜九宫格 =====
