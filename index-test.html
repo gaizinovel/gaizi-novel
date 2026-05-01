@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>盖子小说 - 测试页</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f0f0; padding: 20px; }
+        .card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #2D3436; }
+        .tag { background: #e0e0e0; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        button { background: #2D3436; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>📖 盖子小说 - 测试页</h1>
+    <div id="content">加载中...</div>
+    <button onclick="loadData()">加载数据</button>
+    <button onclick="alert(document.getElementById('content').innerHTML.length + ' chars')">检查内容长度</button>
+    
+    <script>
+    const state = { contents: [], user: { uid: 'local_user' } };
+    
+    function loadData() {
+        const saved = JSON.parse(localStorage.getItem('gaizi_contents') || '[]');
+        if (saved.length > 0) {
+            state.contents = saved;
+        } else {
+            state.contents = [
+                { id:'d1', title:'【纯美散文】山间听风', type:'article', author:'林清', url:'#', intro:'山风拂过脸颊，带走了尘世的喧嚣，只留下心底最柔软的宁静。这是一篇关于自然与心灵的对话。', tags:['散文','自然'], likes:328, createdAt:'2026-05-01' },
+                { id:'d2', title:'《星河彼岸》第三章', type:'novel', author:'苏遥', url:'#', intro:'飞船穿越小行星带，警报声骤然响起。舷窗外，无数陨石如流星般坠落。这是一个关于宇宙探索的故事。', tags:['科幻','连载'], likes:892, createdAt:'2026-04-30' }
+            ];
+        }
+        renderContents();
+    }
+    
+    function renderContents() {
+        const container = document.getElementById('content');
+        const typeMap = { article:'📝 文章', novel:'📚 小说', copywriting:'✍️ 文案', blog:'🌐 博客' };
+        if (state.contents.length === 0) {
+            container.innerHTML = '<p>暂无内容</p>';
+            return;
+        }
+        container.innerHTML = state.contents.map(function(c) {
+            return '<div class="card">' +
+                '<div class="tag">' + (typeMap[c.type] || '') + '</div>' +
+                '<h3>' + c.title + '</h3>' +
+                '<p>' + c.intro.substring(0, 60) + '...</p>' +
+                '<div><span>👤 ' + c.author + '</span> <span>❤️ ' + c.likes + '</span></div>' +
+                '<div>' + (c.tags||[]).map(function(t){ return '<span class="tag">' + t + '</span>'; }).join(' ') + '</div>' +
+            '</div>';
+        }).join('');
+        document.title = '盖子小说 - ' + state.contents.length + ' 条内容';
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        loadData();
+    });
+    </script>
+</body>
+</html>
