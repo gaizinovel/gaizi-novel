@@ -122,15 +122,16 @@ body {
     100% { transform: translateX(-50%); }
 }
 
-/* ===== 顶部导航 - 毛玻璃效果 ===== */
+/* ===== 顶部导航 - 温馨白色 ===== */
 .header {
     position: sticky;
     top: 0;
-    background: rgba(30, 36, 44, 0.85);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
+    box-shadow: 0 2px 20px rgba(232,90,79,0.06);
 }
 
 .header-content {
@@ -159,11 +160,11 @@ body {
 
 .logo-icon { 
     font-size: 28px;
-    filter: drop-shadow(0 0 8px rgba(255,107,53,0.5));
+    filter: drop-shadow(0 2px 4px rgba(232,90,79,0.2));
 }
 
 .logo-text {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-gold) 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -182,7 +183,7 @@ body {
 
 .search-box:focus-within { 
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+    box-shadow: 0 0 0 3px rgba(232,90,79,0.1);
 }
 
 .search-box input {
@@ -215,7 +216,7 @@ body {
 
 .user-area { display: flex; align-items: center; gap: 16px; }
 
-/* ===== 按钮 - 渐变发光 ===== */
+/* ===== 按钮 - 温馨渐变 ===== */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -232,14 +233,14 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
     color: white;
-    box-shadow: 0 4px 15px rgba(255,107,53,0.4);
+    box-shadow: 0 4px 15px rgba(232,90,79,0.3);
 }
 
 .btn-primary:hover { 
-    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
-    box-shadow: 0 6px 20px rgba(255,107,53,0.5);
+    background: linear-gradient(135deg, var(--accent-warm) 0%, var(--accent) 100%);
+    box-shadow: 0 6px 20px rgba(232,90,79,0.4);
     transform: translateY(-2px);
 }
 
@@ -252,28 +253,28 @@ body {
 .btn-secondary:hover {
     border-color: var(--accent);
     color: var(--accent);
-    background: rgba(255,107,53,0.1);
+    background: rgba(232,90,79,0.08);
 }
 
 .btn-secondary.liked {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
     color: white;
     border-color: transparent;
     cursor: not-allowed;
-    box-shadow: 0 2px 10px rgba(255,71,87,0.4);
+    box-shadow: 0 2px 10px rgba(255,107,107,0.3);
 }
 
 .btn-secondary.liked:hover {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
     color: white;
     transform: none;
 }
 
 .btn-block { width: 100%; }
 
-/* ===== 筛选栏 - 悬浮胶囊 ===== */
+/* ===== 筛选栏 - 温馨胶囊 ===== */
 .filter-bar {
-    background: rgba(26, 31, 38, 0.95);
+    background: rgba(255, 248, 245, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     position: sticky;
@@ -298,11 +299,11 @@ body {
     width: 100%;
 }
 
-/* 博客按钮旁边的跑马灯 - 金色VIP风格 */
+/* 博客按钮旁边的跑马灯 - 温馨暖色 */
 .blog-marquee-inline {
-    background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    background: linear-gradient(90deg, #FFE4D6 0%, #FFD4C4 50%, #FFE4D6 100%);
     background-size: 200% 100%;
-    color: #1a1a2e;
+    color: var(--accent);
     padding: 12px 28px;
     border-radius: 28px;
     overflow: hidden;
@@ -310,12 +311,13 @@ body {
     flex: 1;
     max-width: 600px;
     min-width: 400px;
-    box-shadow: 0 4px 20px rgba(255,215,0,0.3);
-    animation: goldShimmer 3s linear infinite;
+    box-shadow: 0 4px 20px rgba(232,90,79,0.12);
+    animation: warmShimmer 4s linear infinite;
     font-weight: 700;
+    border: 1px solid rgba(232,90,79,0.15);
 }
 
-@keyframes goldShimmer {
+@keyframes warmShimmer {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
@@ -330,7 +332,6 @@ body {
     padding: 0 50px;
     font-size: 15px;
     font-weight: 700;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.3);
 }
 
 @keyframes blogMarqueeInline {
@@ -342,7 +343,7 @@ body {
     padding: 10px 24px;
     border-radius: 24px;
     border: 1px solid var(--border);
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     color: var(--secondary);
     font-size: 15px;
     font-weight: 500;
