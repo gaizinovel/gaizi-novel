@@ -624,95 +624,116 @@ body {
 }
 
 .author-name {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--secondary);
+    font-weight: 500;
 }
 
 .card-meta {
     display: flex;
     align-items: center;
-    gap: 16px;
-    font-size: 12px;
+    gap: 20px;
+    font-size: 13px;
     color: var(--secondary);
+}
+
+.card-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .card-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
+    gap: 8px;
+    margin-top: 16px;
 }
 
 .tag {
-    padding: 4px 10px;
-    background: var(--bg-primary);
-    border-radius: 12px;
-    font-size: 12px;
+    padding: 6px 14px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    font-size: 13px;
     color: var(--secondary);
+    transition: var(--transition);
+    border: 1px solid transparent;
 }
 
-/* ===== 空状态 ===== */
+.tag:hover {
+    background: rgba(255,107,53,0.1);
+    border-color: rgba(255,107,53,0.3);
+    color: var(--accent);
+}
+
+/* ===== 空状态 - 霓虹效果 ===== */
 .empty-state {
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 20px;
 }
 
 .empty-state p {
     color: var(--secondary);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    font-size: 16px;
 }
 
-/* ===== 加载状态 ===== */
+/* ===== 加载状态 - 发光旋转 ===== */
 .loading-state {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
     color: var(--secondary);
 }
 
 .spinner {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border: 3px solid var(--border);
     border-top-color: var(--accent);
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 16px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 20px rgba(255,107,53,0.3);
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
-/* ===== 底部 ===== */
+/* ===== 底部 - 深色渐变 ===== */
 .footer {
-    background: var(--bg-card);
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border-top: 1px solid var(--border);
-    padding: 24px 0;
+    padding: 40px 0;
     text-align: center;
+    margin-top: 60px;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
     color: var(--secondary);
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .footer-content p {
-    margin: 6px 0;
+    margin: 8px 0;
 }
 
 .footer-content a {
-    color: var(--primary);
+    color: var(--accent);
     text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
 }
 
 .footer-content a:hover {
+    color: var(--accent-light);
     text-decoration: underline;
 }
 
-/* ===== 模态框 ===== */
+/* ===== 模态框 - 玻璃拟态 ===== */
 .modal {
     position: fixed;
     top: 0;
@@ -723,7 +744,7 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 24px;
 }
 
 .modal.show { display: flex; }
@@ -734,100 +755,129 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
 }
 
 .modal-content {
     position: relative;
     background: var(--bg-card);
     border-radius: var(--radius);
-    padding: 32px;
+    padding: 36px;
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
     max-height: 90vh;
     overflow-y: auto;
-    animation: modalIn 0.3s ease;
+    animation: modalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
 }
 
-.modal-large { max-width: 560px; }
+.modal-large { max-width: 600px; }
 
 @keyframes modalIn {
-    from { opacity: 0; transform: scale(0.95); }
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .modal-close {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 32px;
-    height: 32px;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
     border: none;
-    background: transparent;
-    font-size: 24px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    font-size: 20px;
     color: var(--secondary);
     cursor: pointer;
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.modal-close:hover { color: var(--primary); }
+.modal-close:hover { 
+    background: var(--accent);
+    color: white;
+    transform: rotate(90deg);
+}
 
-/* 发布表单 */
+/* 发布表单 - 深色主题 */
 .publish-header {
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    text-align: center;
 }
 
 .publish-header h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
+    font-size: 26px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .publish-header p {
     color: var(--secondary);
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .publish-form input,
 .publish-form select,
 .publish-form textarea {
     width: 100%;
-    padding: 12px 16px;
+    padding: 14px 18px;
     border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
     font-family: inherit;
     outline: none;
     transition: var(--transition);
+    background: var(--bg-secondary);
+    color: var(--primary);
 }
 
 .publish-form input:focus,
 .publish-form select:focus,
 .publish-form textarea:focus {
     border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+}
+
+.publish-form input::placeholder,
+.publish-form textarea::placeholder {
+    color: var(--secondary);
 }
 
 .publish-form textarea {
-    min-height: 120px;
+    min-height: 140px;
     resize: vertical;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .form-group label {
     display: block;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--primary);
 }
 
-.required { color: var(--danger); }
+.required { 
+    color: var(--danger);
+    margin-left: 4px;
+}
 
 .char-count {
     text-align: right;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--secondary);
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 /* 置顶复选框 */
