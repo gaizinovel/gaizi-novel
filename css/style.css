@@ -1,19 +1,27 @@
-/* ===== 盖子小说 - 最终样式 ===== */
+/* ===== 盖子小说 - 沉浸式阅读体验 ===== */
 
 :root {
-    --primary: #2D3436;
-    --secondary: #636E72;
-    --accent: #6C5CE7;
-    --accent-light: #A29BFE;
-    --bg-primary: #FAFAFA;
-    --bg-card: #FFFFFF;
-    --border: #E9ECEF;
-    --success: #00B894;
-    --danger: #E17055;
-    --shadow: 0 2px 8px rgba(0,0,0,0.08);
-    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
-    --radius: 12px;
-    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* 深色主题 - 起点/番茄风格 */
+    --primary: #FFFFFF;
+    --secondary: #9CA3AF;
+    --accent: #FF6B35;
+    --accent-light: #FF8C61;
+    --accent-gold: #FFD700;
+    --bg-primary: #0F1419;
+    --bg-secondary: #1A1F26;
+    --bg-card: #1E242C;
+    --bg-hover: #252B36;
+    --border: #2D3748;
+    --success: #10B981;
+    --danger: #EF4444;
+    --vip: #FFD700;
+    --hot: #FF4757;
+    --shadow: 0 4px 20px rgba(0,0,0,0.4);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.5);
+    --shadow-glow: 0 0 20px rgba(255,107,53,0.3);
+    --radius: 16px;
+    --radius-sm: 8px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *, *::before, *::after {
@@ -23,31 +31,59 @@
 }
 
 body {
-    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg-primary);
     color: var(--primary);
-    line-height: 1.6;
+    line-height: 1.7;
     min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255,107,53,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255,215,0,0.03) 0%, transparent 50%);
 }
 
-/* ===== 跑马灯 ===== */
+/* ===== 顶部跑马灯 - 霓虹渐变 ===== */
 .marquee-bar {
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     color: white;
-    padding: 8px 0;
+    padding: 10px 0;
     overflow: hidden;
     position: relative;
+    border-bottom: 1px solid var(--border);
+}
+
+.marquee-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-gold), var(--accent));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 .marquee-content {
     display: flex;
-    animation: marquee 20s linear infinite;
+    animation: marquee 25s linear infinite;
     white-space: nowrap;
 }
 
 .marquee-content span {
-    padding: 0 40px;
+    padding: 0 50px;
     font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.marquee-content span::before {
+    content: '✨';
+    margin-right: 8px;
 }
 
 @keyframes marquee {
@@ -86,11 +122,13 @@ body {
     100% { transform: translateX(-50%); }
 }
 
-/* ===== 顶部导航 ===== */
+/* ===== 顶部导航 - 毛玻璃效果 ===== */
 .header {
     position: sticky;
     top: 0;
-    background: var(--bg-card);
+    background: rgba(30, 36, 44, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
 }
@@ -98,48 +136,71 @@ body {
 .header-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 12px 20px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 32px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     text-decoration: none;
     color: var(--primary);
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 800;
+    font-size: 22px;
+    transition: var(--transition);
 }
 
-.logo-icon { font-size: 24px; }
+.logo:hover {
+    transform: scale(1.02);
+}
+
+.logo-icon { 
+    font-size: 28px;
+    filter: drop-shadow(0 0 8px rgba(255,107,53,0.5));
+}
+
+.logo-text {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
 .search-box {
     flex: 1;
-    max-width: 400px;
+    max-width: 480px;
     display: flex;
-    background: var(--bg-primary);
-    border-radius: 24px;
+    background: var(--bg-secondary);
+    border-radius: 28px;
     overflow: hidden;
     border: 1px solid var(--border);
     transition: var(--transition);
 }
 
-.search-box:focus-within { border-color: var(--accent); }
+.search-box:focus-within { 
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+}
 
 .search-box input {
     flex: 1;
-    padding: 10px 16px;
+    padding: 12px 20px;
     border: none;
     background: transparent;
-    font-size: 14px;
+    font-size: 15px;
     outline: none;
+    color: var(--primary);
+}
+
+.search-box input::placeholder {
+    color: var(--secondary);
 }
 
 .search-btn {
-    padding: 10px 16px;
+    padding: 12px 20px;
     border: none;
     background: transparent;
     color: var(--secondary);
