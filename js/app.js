@@ -3,7 +3,8 @@
 const state = {
     user: null,
     userContents: [],
-    currentFilter: 'all'
+    currentFilter: 'all',
+    userLikes: []  // 用户已点赞的内容ID列表
 };
 
 // ===== 2026年最新文学圈资讯（热榜专用）=====
@@ -96,6 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
         try { state.user = JSON.parse(savedUser); } catch(e) {}
     }
     
+    // 加载用户点赞记录
+    const savedLikes = localStorage.getItem('gaizi_user_likes');
+    if (savedLikes) {
+        try { state.userLikes = JSON.parse(savedLikes); } catch(e) { state.userLikes = []; }
+    }
+    
     // 加载用户内容
     loadUserContents();
     
@@ -164,7 +171,7 @@ function renderContents() {
         // 热榜：九宫格卡片，混合新闻+热门用户内容
         html = renderRankingGrid();
     } else if (state.currentFilter === 'blog') {
-        // 博客：显示标签栏跑马灯 + 内容列表
+        // 博客：内容列表
         html = renderUserList();
     } else {
         // 其他：列表式展示用户内容
@@ -172,39 +179,6 @@ function renderContents() {
     }
     
     container.innerHTML = html || '<div class="empty-state"><p>暂无内容</p><p style="margin-top:10px"><button class="btn btn-primary" onclick="openPublishModal()">✏️ 分享第一篇</button></p></div>';
-    
-    // 更新标签栏跑马灯显示状态
-    updateFilterMarquee();
-}
-
-// ===== 博客跑马灯 =====
-function renderBlogMarquee() {
-    const text = '✏️ 分享你创作的作品信息，让更多人看到它！';
-    // 复制两份实现无缝循环滚动
-    return `
-        <div class="blog-marquee">
-            <div class="blog-marquee-content">
-                <span>${text}</span>
-                <span>${text}</span>
-            </div>
-        </div>
-    `;
-}
-
-// ===== 更新标签栏跑马灯 =====
-function updateFilterMarquee() {
-    const marqueeContainer = document.getElementById('filterMarquee');
-    if (!marqueeContainer) return;
-    
-    if (state.currentFilter === 'blog') {
-        // 博客标签：显示跑马灯
-        marqueeContainer.innerHTML = renderBlogMarquee();
-        marqueeContainer.style.display = 'block';
-    } else {
-        // 其他标签：隐藏跑马灯
-        marqueeContainer.innerHTML = '';
-        marqueeContainer.style.display = 'none';
-    }
 }
 
 // ===== 热榜九宫格 =====
@@ -383,7 +357,9 @@ function openDetailModal(id) {
         ${(c.tags && c.tags.length) ? '<div class="detail-tags">' + c.tags.map(t => `<span class="detail-tag">${escapeHtml(t)}</span>`).join('') + '</div>' : ''}
         <div class="detail-actions">
             <a href="${escapeHtml(c.url)}" target="_blank" rel="noopener" class="btn btn-primary">🔗 访问原文</a>
-            <button onclick="likeContent('${c.id}')" class="btn btn-secondary">❤️ 点赞 (${c.likes})</button>
+            <button onclick="likeContent('${c.id}')" class="btn btn-secondary ${state.userLikes.includes(c.id) ? 'liked' : ''}" ${state.userLikes.includes(c.id) ? 'disabled' : ''}>
+                ${state.userLikes.includes(c.id) ? '❤️ 已赞' : '❤️ 点赞'} (${c.likes})
+            </button>
         </div>
     `;
     
@@ -418,7 +394,9 @@ function openRankingDetail(id) {
         <div class="detail-intro">${escapeHtml(item.desc || item.intro)}</div>
         <div class="detail-actions">
             <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener" class="btn btn-primary">🔗 访问原文</a>
-            <button onclick="showToast('❤️ 已点赞！', 'success')" class="btn btn-secondary">❤️ 点赞 (${item.likes})</button>
+            <button onclick="likeRankingItem('${item.id}')" class="btn btn-secondary ${state.userLikes.includes(item.id) ? 'liked' : ''}" ${state.userLikes.includes(item.id) ? 'disabled' : ''}>
+                ${state.userLikes.includes(item.id) ? '❤️ 已赞' : '❤️ 点赞'} (${item.likes})
+            </button>
         </div>
     `;
     
@@ -431,15 +409,58 @@ function closeDetailModal() {
 
 // ===== 点赞 =====
 function likeContent(id) {
+    // 检查是否已点赞
+    if (state.userLikes.includes(id)) {
+        showToast('❤️ 您已经赞过了！', 'info');
+        return;
+    }
+    
     const c = state.userContents.find(x => x.id === id);
     if (!c) return;
+    
+    // 增加点赞数
     c.likes++;
     
+    // 记录用户已点赞
+    state.userLikes.push(id);
+    localStorage.setItem('gaizi_user_likes', JSON.stringify(state.userLikes));
     localStorage.setItem('gaizi_contents', JSON.stringify(state.userContents));
     
     showToast('❤️ 点赞成功！', 'success');
     renderContents();
     openDetailModal(id);
+}
+
+// ===== 热榜点赞 =====
+function likeRankingItem(id) {
+    // 检查是否已点赞
+    if (state.userLikes.includes(id)) {
+        showToast('❤️ 您已经赞过了！', 'info');
+        return;
+    }
+    
+    // 查找是新闻还是用户内容
+    const newsItem = HOT_NEWS_2026.find(x => x.id === id);
+    const userItem = state.userContents.find(x => x.id === id);
+    const item = newsItem || userItem;
+    
+    if (!item) return;
+    
+    // 增加点赞数
+    item.likes++;
+    
+    // 记录用户已点赞
+    state.userLikes.push(id);
+    localStorage.setItem('gaizi_user_likes', JSON.stringify(state.userLikes));
+    
+    // 如果是用户内容，保存到localStorage
+    if (userItem) {
+        localStorage.setItem('gaizi_contents', JSON.stringify(state.userContents));
+    }
+    
+    showToast('❤️ 点赞成功！', 'success');
+    renderContents();
+    openRankingDetail(id);
 }
 
 // ===== Toast提示 =====

@@ -184,6 +184,19 @@ body {
     color: var(--accent);
 }
 
+.btn-secondary.liked {
+    background: #ff6b6b;
+    color: white;
+    border-color: #ff6b6b;
+    cursor: not-allowed;
+}
+
+.btn-secondary.liked:hover {
+    background: #ff6b6b;
+    color: white;
+    border-color: #ff6b6b;
+}
+
 .btn-block { width: 100%; }
 
 /* ===== 筛选栏 ===== */
