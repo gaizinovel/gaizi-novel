@@ -190,31 +190,53 @@ function renderContents() {
 
 // ===== 热榜九宫格 =====
 function renderRankingGrid() {
-    // 合并：新闻 + 用户高赞内容（点赞>100）
-    let userHot = state.userContents.filter(c => c.likes > 100);
-    let allHot = [...HOT_NEWS_2026, ...userHot];
+    // 用户内容按互动量排序（点赞+评论），优先置顶内容
+    let userHot = state.userContents
+        .filter(c => c.pinned || c.likes > 50) // 置顶内容 或 点赞>50
+        .map(c => ({
+            ...c,
+            interaction: (c.likes || 0) + (c.comments || 0) * 2 // 评论权重更高
+        }))
+        .sort((a, b) => {
+            // 置顶优先，然后按互动量
+            if (a.pinned && !b.pinned) return -1;
+            if (!a.pinned && b.pinned) return 1;
+            return b.interaction - a.interaction;
+        })
+        .slice(0, 4); // 取前4个用户内容
+    
+    // 合并：用户热门内容 + 新闻资讯
+    let allHot = [...userHot, ...HOT_NEWS_2026];
     
     // 按点赞排序，取前9
-    allHot.sort((a, b) => b.likes - a.likes);
+    allHot.sort((a, b) => (b.likes || 0) - (a.likes || 0));
     allHot = allHot.slice(0, 9);
     
     if (allHot.length === 0) return '';
     
-    return '<div class="ranking-grid">' + allHot.map(item => `
-        <div class="ranking-card" onclick="openRankingDetail('${item.id}')">
+    return '<div class="ranking-grid">' + allHot.map(item => {
+        const isUserContent = item.id.startsWith('u_');
+        const pinnedBadge = isUserContent && item.pinned ? '<span class="ranking-badge pinned">📌 置顶</span>' : '';
+        const hotBadge = isUserContent && item.likes > 500 ? '<span class="ranking-badge hot">🔥 热</span>' : '';
+        const userBadge = isUserContent ? '<span class="ranking-badge user">👤 用户</span>' : '';
+        
+        return `
+        <div class="ranking-card ${isUserContent ? 'user-content' : ''}" onclick="openRankingDetail('${item.id}')">
             <div class="ranking-image">
                 <img src="${item.image || 'https://via.placeholder.com/400'}" alt="${escapeHtml(item.title)}" loading="lazy">
+                <div class="ranking-badges">${pinnedBadge}${hotBadge}${userBadge}</div>
                 <div class="ranking-overlay">
-                    <span class="ranking-likes">❤️ ${item.likes}</span>
+                    <span class="ranking-likes">❤️ ${item.likes || 0}</span>
+                    ${isUserContent ? `<span class="ranking-comments">💬 ${item.comments || 0}</span>` : ''}
                 </div>
             </div>
             <div class="ranking-info">
                 <h3 class="ranking-title">${escapeHtml(item.title)}</h3>
-                <p class="ranking-subtitle">${escapeHtml(item.subtitle || item.source || '')}</p>
+                <p class="ranking-subtitle">${escapeHtml(item.subtitle || item.source || (isUserContent ? TYPE_MAP[item.type] : ''))}</p>
                 <p class="ranking-author">${escapeHtml(item.author)}</p>
             </div>
         </div>
-    `).join('') + '</div>';
+    `}).join('') + '</div>';
 }
 
 // ===== 用户内容列表 =====

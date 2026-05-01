@@ -1005,6 +1005,61 @@ body {
     }
 }
 
+/* ===== 热榜卡片标识 ===== */
+.ranking-badges {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    z-index: 2;
+}
+
+.ranking-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+}
+
+.ranking-badge.pinned {
+    background: rgba(108, 92, 231, 0.9);
+    color: white;
+}
+
+.ranking-badge.hot {
+    background: rgba(255, 107, 107, 0.9);
+    color: white;
+}
+
+.ranking-badge.user {
+    background: rgba(0, 184, 148, 0.9);
+    color: white;
+}
+
+.ranking-card.user-content {
+    border: 2px solid var(--accent-light);
+}
+
+.ranking-card.user-content .ranking-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    pointer-events: none;
+}
+
+.ranking-comments {
+    margin-left: 8px;
+    font-size: 12px;
+}
+
 /* ===== 滚动条 ===== */
 ::-webkit-scrollbar {
     width: 6px;
