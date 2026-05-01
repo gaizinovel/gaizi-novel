@@ -488,3 +488,136 @@ function showToast(msg, type) {
         toast.classList.remove('show');
     }, 2500);
 }
+
+// ===== 评论区域渲染 =====
+function renderCommentsSection(contentId, comments) {
+    const currentUser = state.user?.name || '匿名用户';
+    
+    return `
+        <div class="comments-section">
+            <div class="comments-header">
+                💬 评论 <span>(${comments.length})</span>
+            </div>
+            <div class="comment-input-area">
+                <span class="author-avatar">${currentUser[0]}</span>
+                <div class="comment-input-wrapper">
+                    <textarea 
+                        id="commentInput_${contentId}" 
+                        class="comment-input" 
+                        placeholder="写下你的评论..."
+                        maxlength="500"
+                    ></textarea>
+                    <div class="comment-input-actions">
+                        <button onclick="submitComment('${contentId}')" class="comment-submit-btn">发表评论</button>
+                    </div>
+                </div>
+            </div>
+            <div class="comments-list" id="commentsList_${contentId}">
+                ${comments.length > 0 
+                    ? comments.map(c => renderCommentItem(c)).join('') 
+                    : '<div class="empty-comments">暂无评论，快来抢沙发吧！</div>'
+                }
+            </div>
+        </div>
+    `;
+}
+
+// ===== 渲染单条评论 =====
+function renderCommentItem(comment) {
+    return `
+        <div class="comment-item">
+            <span class="author-avatar">${comment.author[0]}</span>
+            <div class="comment-content">
+                <div class="comment-header">
+                    <span class="comment-author">${escapeHtml(comment.author)}</span>
+                    <span class="comment-time">${formatTime(comment.createdAt)}</span>
+                </div>
+                <div class="comment-text">${escapeHtml(comment.text)}</div>
+            </div>
+        </div>
+    `;
+}
+
+// ===== 提交评论 =====
+function submitComment(contentId) {
+    const input = document.getElementById(`commentInput_${contentId}`);
+    if (!input) return;
+    
+    const text = input.value.trim();
+    if (!text) {
+        showToast('请输入评论内容', 'error');
+        return;
+    }
+    
+    if (text.length < 2) {
+        showToast('评论至少2个字', 'error');
+        return;
+    }
+    
+    const newComment = {
+        id: 'c_' + Date.now(),
+        author: state.user?.name || '匿名用户',
+        text: text,
+        createdAt: new Date().toISOString()
+    };
+    
+    // 初始化该内容的评论数组
+    if (!state.comments[contentId]) {
+        state.comments[contentId] = [];
+    }
+    
+    // 添加评论到开头
+    state.comments[contentId].unshift(newComment);
+    
+    // 保存到 localStorage
+    localStorage.setItem('gaizi_comments', JSON.stringify(state.comments));
+    
+    // 更新对应内容的评论数
+    const userContent = state.userContents.find(x => x.id === contentId);
+    if (userContent) {
+        userContent.comments = state.comments[contentId].length;
+        localStorage.setItem('gaizi_contents', JSON.stringify(state.userContents));
+    }
+    
+    // 清空输入框
+    input.value = '';
+    
+    // 刷新评论列表
+    const commentsList = document.getElementById(`commentsList_${contentId}`);
+    const comments = state.comments[contentId];
+    if (commentsList) {
+        commentsList.innerHTML = comments.map(c => renderCommentItem(c)).join('');
+    }
+    
+    // 更新评论数显示
+    const commentsHeader = document.querySelector('.comments-header span');
+    if (commentsHeader) {
+        commentsHeader.textContent = `(${comments.length})`;
+    }
+    
+    // 刷新主列表显示
+    renderContents();
+    
+    showToast('✅ 评论发表成功！', 'success');
+}
+
+// ===== 格式化时间 =====
+function formatTime(isoString) {
+    if (!isoString) return '未知时间';
+    
+    const date = new Date(isoString);
+    const now = new Date();
+    const diff = now - date;
+    
+    // 小于1分钟
+    if (diff < 60000) return '刚刚';
+    // 小于1小时
+    if (diff < 3600000) return `${Math.floor(diff / 60000)}分钟前`;
+    // 小于24小时
+    if (diff < 86400000) return `${Math.floor(diff / 3600000)}小时前`;
+    // 小于7天
+    if (diff < 604800000) return `${Math.floor(diff / 86400000)}天前`;
+    
+    // 超过7天显示日期
+    return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+}
