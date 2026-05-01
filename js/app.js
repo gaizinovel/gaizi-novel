@@ -11,76 +11,76 @@ const state = {
 // ===== 2026年最新文学圈资讯（热榜专用）=====
 const HOT_NEWS_2026 = [
     {
-        id: 'news_1', title: 'B站×晋江1.2亿合作', subtitle: '网文IP改编',
-        author: '中国作家网', source: '文学资讯',
-        url: 'https://www.chinawriter.com.cn/n1/2026/0430/c405059-40408096.html',
-        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 2847, createdAt: '2026-04-30',
-        desc: '哔哩哔哩与晋江文学城签订三年合作框架协议，总额1.2亿元，聚焦网文IP改编、动画制作、影视开发。'
-    },
-    {
-        id: 'news_2', title: '《牧神记》动画年番', subtitle: 'B站评分9.7',
-        author: '宅猪', source: '起点中文网',
-        url: 'https://www.bilibili.com/bangumi/play/ss46000',
-        image: 'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 5621, createdAt: '2026-04-29',
-        desc: '宅猪代表作《牧神记》动画版在B站以年番形式持续更新，目前评分高达9.7分，被誉为近年来最成功的网文改编动画。'
-    },
-    {
-        id: 'news_3', title: '徐则臣推广大使', subtitle: '书香天府',
-        author: '徐则臣', source: '人民文学出版社',
-        url: 'https://www.rw-cn.com/html/report/26042301.html',
-        image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=400&fit=crop',
-        imageType: 'author', likes: 1834, createdAt: '2026-04-23',
-        desc: '茅盾文学奖得主徐则臣受邀担任"书香天府·全民阅读"推广大使，在成都参加世界读书日活动。'
-    },
-    {
-        id: 'news_4', title: '第十二届影响力作家', subtitle: '世界读书日',
-        author: '中国出版传媒商报', source: '文学奖项',
-        url: 'https://www.cbbr.com.cn/article/detail_27846.html',
-        image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=400&fit=crop',
-        imageType: 'news', likes: 2156, createdAt: '2026-04-23',
-        desc: '4月23日世界读书日，第十二届影响力作家评选结果正式公布，涵盖小说、散文、诗歌等多个门类。'
-    },
-    {
-        id: 'news_5', title: '《北上》电视剧热播', subtitle: '茅奖改编',
-        author: '徐则臣', source: '腾讯视频',
-        url: 'https://v.qq.com/x/cover/mzc00200rp02bq.html',
-        image: 'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 3429, createdAt: '2026-04-20',
-        desc: '改编自第十届茅盾文学奖获奖作品《北上》的同名电视剧正在热播，大运河百年变迁的故事引发观众共鸣。'
-    },
-    {
-        id: 'news_6', title: '《吞噬星空》第三季', subtitle: '玄机科技',
-        author: '我吃西红柿', source: '起点中文网',
-        url: 'https://www.bilibili.com/bangumi/play/ss45239',
-        image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 4872, createdAt: '2026-04-18',
-        desc: '我吃西红柿经典科幻修真小说《吞噬星空》动画第三季已定档，由玄机科技制作。'
-    },
-    {
-        id: 'news_7', title: '李致97岁出新书', subtitle: '巴金侄子',
-        author: '李致', source: '四川作家网',
-        url: 'http://www.scwriter.com/news/view?id=12345',
-        image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=400&fit=crop',
-        imageType: 'author', likes: 1245, createdAt: '2026-04-22',
-        desc: '97岁著名作家、巴金侄子李致先生新作《〈李致文存〉拾遗》于4月22日正式出版。'
-    },
-    {
-        id: 'news_8', title: '《姐夫同志》出版', subtitle: '骏马奖作家',
-        author: '红日', source: '澎湃新闻',
-        url: 'https://www.thepaper.cn/newsDetail_forward_29012345',
-        image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 987, createdAt: '2026-04-21',
-        desc: '瑶族作家、骏马奖获得者红日的长篇小说《姐夫同志》单行本近日出版。'
-    },
-    {
-        id: 'news_9', title: '《斗破苍穹》新动画季', subtitle: '官宣定档',
-        author: '天蚕土豆', source: 'B站',
-        url: 'https://www.bilibili.com/bangumi/play/ss28099',
+        id: 'news_1', title: '《玄鉴仙族》霸榜月票', subtitle: '2026年4月月票冠军',
+        author: '季越人', source: '起点中文网',
+        url: 'https://www.qidian.com/book/1035420984/',
         image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 6234, createdAt: '2026-04-12',
-        desc: '天蚕土豆巅峰之作《斗破苍穹》新一季动画正式官宣，制作全面升级。'
+        imageType: 'cover', likes: 83170, createdAt: '2026-05-01',
+        desc: '季越人《玄鉴仙族》以8.3万月票登顶2026年4月起点月票榜冠军！家族修仙题材开创者，讲述陆江仙残魂附镜，传仙道授仙法，开启波澜壮阔的修仙新时代。'
+    },
+    {
+        id: 'news_2', title: '《捞尸人》畅销冠军', subtitle: '都市灵异爆款',
+        author: '纯洁滴小龙', source: '起点中文网',
+        url: 'https://www.qidian.com/book/1039890335/',
+        image: 'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 73762, createdAt: '2026-05-01',
+        desc: '纯洁滴小龙《捞尸人》登顶畅销榜冠军！人知鬼恐怖，鬼晓人心毒。传统灵异小说新标杆，月票7.3万稳居第二。'
+    },
+    {
+        id: 'news_3', title: '《夜无疆》辰东新作', subtitle: '玄幻霸榜',
+        author: '辰东', source: '起点中文网',
+        url: 'https://www.qidian.com/book/1038450877/',
+        image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 42445, createdAt: '2026-04-30',
+        desc: '辰东新书《夜无疆》强势来袭！那一天太阳落下再也没有升起……4月月票4.2万，玄幻品类第一，延续《遮天》《完美世界》辉煌。'
+    },
+    {
+        id: 'news_4', title: 'AI漫剧月增700亿播放', subtitle: '网文改编新风口',
+        author: 'DataEye-ADX', source: '东方财富网',
+        url: 'https://finance.eastmoney.com/a/202604293724315677.html',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=400&fit=crop',
+        imageType: 'news', likes: 2847, createdAt: '2026-04-29',
+        desc: '2026年3月新上线漫剧4.7万部，播放增量突破700亿大关！《斩仙台下，我震惊了诸神！》全网播放超10亿，网文IP漫改进入爆发期。'
+    },
+    {
+        id: 'news_5', title: '《我在废土世界扫垃圾》动画化', subtitle: '晋江×B站合作',
+        author: '晋江文学城', source: '搜狐网',
+        url: 'https://www.sohu.com/a/1015580680_122521040',
+        image: 'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 5621, createdAt: '2026-04-28',
+        desc: 'B站官宣与神漫文化合作，将晋江人气IP《我在废土世界扫垃圾》动画化！32集季播剧联手动画化，国产科幻迎来"浪漫废土"新纪元。'
+    },
+    {
+        id: 'news_6', title: '2026Q1动漫霸屏榜', subtitle: '国漫8部霸榜',
+        author: '行业报告', source: '企鹅号',
+        url: 'https://v.qq.com/x/cover/mzc00200rp02bq.html',
+        image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=400&fit=crop',
+        imageType: 'news', likes: 3429, createdAt: '2026-04-27',
+        desc: '2026Q1上新动漫霸屏榜TOP10含8部国漫！《一人之下第6季》《修罗武神第2季》《中国奇谭2》《成何体统第2季》等网文改编动画持续霸屏。'
+    },
+    {
+        id: 'news_7', title: '《偏偏宠爱》影视化', subtitle: '热门IP改编',
+        author: '新浪娱乐', source: '新浪网',
+        url: 'https://k.sina.com.cn/article_7857201856_1d45362c001904vz08.html',
+        image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 4872, createdAt: '2026-04-30',
+        desc: '2026年4月29日，经典热门小说《偏偏宠爱》正式官宣影视化！机车少年与温柔校花的双向救赎故事将走上荧幕，引爆全网热议。'
+    },
+    {
+        id: 'news_8', title: '《风起洛阳》热播', subtitle: '马伯庸改编',
+        author: '爱奇艺', source: '灯塔专业版',
+        url: 'https://www.iqiyi.com/',
+        image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 6234, createdAt: '2026-04-30',
+        desc: '《风起洛阳》持续稳居全网正片播放市占率榜一，实时市占率超30.5%！马伯庸原著改编，黄轩、王一博、宋茜主演，华夏古城传奇剧品质之作。'
+    },
+    {
+        id: 'news_9', title: '《青山》会说话的肘子', subtitle: '玄幻新作',
+        author: '会说话的肘子', source: '起点中文网',
+        url: 'https://www.qidian.com/book/1038450878/',
+        image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 33280, createdAt: '2026-04-28',
+        desc: '会说话的肘子新书《青山》4月月票3.3万！少时光阴长，泼酒翻红巷。权为砖墙利为瓦，宾朋倚满帐。醒来恨日短，大梦二十转。'
     }
 ];
 
