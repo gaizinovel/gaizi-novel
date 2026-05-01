@@ -1,4 +1,4 @@
-// ===== 盖子小说 - 核心应用 =====
+﻿// ===== 盖子小说 - 核心应用 =====
 
 // 状态管理
 const state = {
@@ -342,7 +342,12 @@ function filterByType(type) {
         tag.classList.toggle('active', tag.dataset.type === type);
     });
     
-    renderContents();
+    // 热榜单独渲染
+    if (type === 'ranking') {
+        renderRanking();
+    } else {
+        renderContents();
+    }
 }
 
 function search() {
@@ -734,3 +739,4 @@ function getDemoContents() {
         }
     ];
 }
+
