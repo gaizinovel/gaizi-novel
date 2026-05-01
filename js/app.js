@@ -4,7 +4,8 @@ const state = {
     user: null,
     userContents: [],
     currentFilter: 'all',
-    userLikes: []  // 用户已点赞的内容ID列表
+    userLikes: [],  // 用户已点赞的内容ID列表
+    comments: {}    // 评论数据 { contentId: [comment1, comment2, ...] }
 };
 
 // ===== 2026年最新文学圈资讯（热榜专用）=====
