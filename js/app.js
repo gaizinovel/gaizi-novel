@@ -424,19 +424,23 @@ function closePublishModal() {
     document.getElementById('charCount').textContent = '0';
 }
 
-async function submitContent(e) {
+function submitContent(e) {
     e.preventDefault();
-    
-    if (!state.user) {
-        showToast('请先登录', 'error');
-        return;
-    }
     
     const title = document.getElementById('titleInput').value.trim();
     const type = document.getElementById('typeSelect').value;
     const url = document.getElementById('urlInput').value.trim();
     const intro = document.getElementById('introInput').value.trim();
     const tagsInput = document.getElementById('tagsInput').value.trim();
+    
+    if (!title || !type || !url || !intro) {
+        showToast('请填写必填项！', 'error');
+        return;
+    }
+    if (intro.length < 20) {
+        showToast('简介至少需要20个字！', 'error');
+        return;
+    }
     
     // 验证视频链接
     const videoDomains = ['youtube.com', 'youtu.be', 'bilibili.com', 'v.qq.com', 'iqiyi.com', 'youku.com', 'youtube.cn'];
@@ -449,33 +453,36 @@ async function submitContent(e) {
     // 解析标签
     const tags = tagsInput ? tagsInput.split(/[,，]/).slice(0, 5).map(t => t.trim()).filter(t => t) : [];
     
-    try {
-        await db.collection('contents').add({
-            authorId: state.user.uid,
-            authorName: state.user.phoneNumber ? `用户${state.user.phoneNumber.slice(-4)}` : '匿名用户',
-            title,
-            type,
-            url,
-            intro,
-            tags,
-            likes: 0,
-            commentCount: 0,
-            isPinned: false,
-            status: 'approved', // 自动审核通过演示
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        closePublishModal();
-        showToast('发布成功！', 'success');
-        loadContents();
-    } catch (error) {
-        console.error('发布失败:', error);
-        showToast('发布失败，请重试', 'error');
-    }
+    // 保存到本地存储
+    const newContent = {
+        id: 'content_' + Date.now(),
+        type, title,
+        author: '匿名用户',
+        url, intro,
+        tags,
+        likes: 0,
+        createdAt: new Date().toLocaleDateString('zh-CN'),
+        pinned: document.getElementById('pinCheck')?.checked || false
+    };
+    
+    // 保存到 localStorage
+    const saved = JSON.parse(localStorage.getItem('gaizi_contents') || '[]');
+    saved.unshift(newContent);
+    localStorage.setItem('gaizi_contents', JSON.stringify(saved));
+    
+    closePublishModal();
+    showToast('发布成功！', 'success');
+    
+    // 刷新列表
+    state.contents = saved;
+    renderContents();
+    
+    // 重置表单
+    document.getElementById('publishForm').reset();
 }
 
 // ===== 详情弹窗 =====
-async function openDetailModal(contentId) {
+function openDetailModal(contentId) {
     const content = state.contents.find(c => c.id === contentId);
     if (!content) return;
     
