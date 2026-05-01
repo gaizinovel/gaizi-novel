@@ -880,7 +880,7 @@ body {
     margin-top: 6px;
 }
 
-/* 置顶复选框 */
+/* 置顶复选框 - 霓虹开关 */
 .checkbox-group {
     display: flex;
     align-items: center;
@@ -889,9 +889,9 @@ body {
 .checkbox-label {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .checkbox-label input {
@@ -899,56 +899,66 @@ body {
 }
 
 .checkmark {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border: 2px solid var(--border);
-    border-radius: 4px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
+    background: var(--bg-secondary);
 }
 
 .checkbox-label input:checked + .checkmark {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    border-color: transparent;
+    box-shadow: 0 0 15px rgba(255,107,53,0.4);
 }
 
 .checkbox-label input:checked + .checkmark::after {
     content: '✓';
     color: white;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .checkbox-text {
     color: var(--primary);
+    font-weight: 500;
 }
 
-/* 详情弹窗 */
-.detail-content { animation: modalIn 0.3s ease; }
+/* 详情弹窗 - 沉浸式深色 */
+.detail-content { animation: modalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
 .detail-header {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .detail-title {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 26px;
+    font-weight: 700;
     line-height: 1.4;
-    margin-top: 12px;
+    margin-top: 16px;
+    color: var(--primary);
 }
 
 .detail-subtitle {
-    color: var(--accent);
-    font-size: 14px;
-    margin-top: 4px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 8px;
 }
 
 .detail-image {
     width: 100%;
     border-radius: var(--radius);
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
 }
 
 .detail-image img {
@@ -960,83 +970,102 @@ body {
 .detail-author {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
 }
 
 .detail-author .author-avatar {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
 }
 
 .detail-author-info h4 {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary);
 }
 
 .detail-author-info span {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--secondary);
 }
 
 .detail-intro {
-    padding: 20px;
-    background: var(--bg-primary);
+    padding: 24px;
+    background: var(--bg-secondary);
     border-radius: var(--radius);
-    margin-bottom: 20px;
-    line-height: 1.8;
+    margin-bottom: 24px;
+    line-height: 1.9;
     white-space: pre-wrap;
+    color: var(--primary);
+    font-size: 15px;
+    border: 1px solid var(--border);
 }
 
 .detail-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 24px;
 }
 
 .detail-tag {
-    padding: 6px 12px;
-    background: var(--bg-primary);
-    border-radius: 16px;
-    font-size: 13px;
+    padding: 8px 16px;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    font-size: 14px;
     color: var(--secondary);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.detail-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .detail-actions {
     display: flex;
-    gap: 12px;
+    gap: 16px;
 }
 
-.detail-actions .btn { flex: 1; }
+.detail-actions .btn { 
+    flex: 1;
+    padding: 14px 24px;
+    font-size: 16px;
+}
 
-/* ===== 评论区域 ===== */
+/* ===== 评论区域 - 深色沉浸 ===== */
 .comments-section {
-    margin-top: 24px;
-    padding-top: 24px;
+    margin-top: 28px;
+    padding-top: 28px;
     border-top: 1px solid var(--border);
 }
 
 .comments-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    font-size: 16px;
-    font-weight: 600;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
 }
 
 .comments-header span {
-    color: var(--secondary);
-    font-size: 14px;
-    font-weight: normal;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .comment-input-area {
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 14px;
+    margin-bottom: 24px;
 }
 
 .comment-input-area .author-avatar {
@@ -1049,46 +1078,57 @@ body {
 
 .comment-input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 16px 20px;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    font-size: 14px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
     font-family: inherit;
     outline: none;
     resize: none;
-    min-height: 80px;
+    min-height: 100px;
     transition: var(--transition);
+    background: var(--bg-secondary);
+    color: var(--primary);
 }
 
 .comment-input:focus {
     border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+}
+
+.comment-input::placeholder {
+    color: var(--secondary);
 }
 
 .comment-input-actions {
     display: flex;
     justify-content: flex-end;
-    margin-top: 8px;
+    margin-top: 12px;
 }
 
 .comment-submit-btn {
-    padding: 8px 20px;
-    background: var(--accent);
+    padding: 10px 28px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
     color: white;
     border: none;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255,107,53,0.3);
 }
 
 .comment-submit-btn:hover {
-    background: var(--accent-light);
+    box-shadow: 0 6px 20px rgba(255,107,53,0.4);
+    transform: translateY(-2px);
 }
 
 .comment-submit-btn:disabled {
     background: var(--border);
+    box-shadow: none;
     cursor: not-allowed;
+    transform: none;
 }
 
 .comments-list {
@@ -1099,10 +1139,16 @@ body {
 
 .comment-item {
     display: flex;
-    gap: 12px;
-    padding: 16px;
-    background: var(--bg-primary);
-    border-radius: var(--radius);
+    gap: 14px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.comment-item:hover {
+    border-color: rgba(255,107,53,0.2);
 }
 
 .comment-item .author-avatar {
@@ -1117,23 +1163,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .comment-author {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     color: var(--primary);
 }
 
 .comment-time {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--secondary);
 }
 
 .comment-text {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.7;
     color: var(--primary);
 }
 
