@@ -104,6 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
         try { state.userLikes = JSON.parse(savedLikes); } catch(e) { state.userLikes = []; }
     }
     
+    // 加载评论数据
+    const savedComments = localStorage.getItem('gaizi_comments');
+    if (savedComments) {
+        try { state.comments = JSON.parse(savedComments); } catch(e) { state.comments = {}; }
+    }
+    
     // 加载用户内容
     loadUserContents();
     
@@ -341,6 +347,8 @@ function openDetailModal(id) {
     const content = document.getElementById('detailContent');
     if (!modal || !content) return;
     
+    const comments = state.comments[id] || [];
+    
     content.innerHTML = `
         <div class="detail-header">
             <span class="card-type ${TYPE_CLASS[c.type] || ''}">${TYPE_MAP[c.type] || ''}</span>
@@ -362,6 +370,7 @@ function openDetailModal(id) {
                 ${state.userLikes.includes(c.id) ? '❤️ 已赞' : '❤️ 点赞'} (${c.likes})
             </button>
         </div>
+        ${renderCommentsSection(id, comments)}
     `;
     
     modal.classList.add('show');
@@ -377,6 +386,7 @@ function openRankingDetail(id) {
     if (!modal || !content) return;
     
     const isNews = item.id.startsWith('news_');
+    const comments = state.comments[id] || [];
     
     content.innerHTML = `
         <div class="detail-header">
@@ -399,6 +409,7 @@ function openRankingDetail(id) {
                 ${state.userLikes.includes(item.id) ? '❤️ 已赞' : '❤️ 点赞'} (${item.likes})
             </button>
         </div>
+        ${renderCommentsSection(id, comments)}
     `;
     
     modal.classList.add('show');
