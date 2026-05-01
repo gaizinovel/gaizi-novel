@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- 跑马灯欢迎词 -->
+    <div class="marquee-bar">
+        <div class="marquee-content">
+            <span>🎉 欢迎来到盖子小说！分享你的文字，发现更多好文 📖</span>
+            <span>🔥 热榜实时更新最新文学资讯</span>
+            <span>✏️ 点击右上角分享发布你的作品</span>
+            <span>📚 发现优质小说、文案、博客</span>
+        </div>
+    </div>
+
     <header class="header">
         <div class="header-content">
             <a href="/" class="logo">
@@ -28,9 +38,9 @@
         <div class="filter-content">
             <button class="filter-tag active" data-filter="all" onclick="filterByType('all')">全部</button>
             <button class="filter-tag" data-filter="ranking" onclick="filterByType('ranking')">🔥 热榜</button>
-            <button class="filter-tag" data-filter="novel" onclick="filterByType('novel')">小说</button>
-            <button class="filter-tag" data-filter="copywriting" onclick="filterByType('copywriting')">文案</button>
-            <button class="filter-tag" data-filter="blog" onclick="filterByType('blog')">博客</button>
+            <button class="filter-tag" data-filter="novel" onclick="filterByType('novel')">📚 小说</button>
+            <button class="filter-tag" data-filter="copywriting" onclick="filterByType('copywriting')">✍️ 文案</button>
+            <button class="filter-tag" data-filter="blog" onclick="filterByType('blog')">🌐 博客</button>
         </div>
     </section>
 
@@ -46,7 +56,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2026 盖子小说 &middot; 用心发现好文</p>
+            <p>&copy; 2026 盖子小说 · 用心发现好文</p>
         </div>
     </footer>
 
@@ -86,6 +96,14 @@
                 <div class="form-group">
                     <label>标签（可选，逗号分隔，最多5个）</label>
                     <input type="text" id="tagsInput" placeholder="如：科幻,连载,推荐">
+                </div>
+                <!-- 置顶选项 -->
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="pinnedInput">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">📌 置顶此内容（优先展示）</span>
+                    </label>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">发布分享</button>
             </form>
