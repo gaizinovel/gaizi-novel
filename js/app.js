@@ -167,7 +167,50 @@ function filterByType(type) {
 
 // ===== 搜索 =====
 function doSearch() {
-    renderContents();
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (!q) {
+        renderContents();
+        return;
+    }
+    // 合并热榜和用户内容
+    const allContents = [...HOT_NEWS_2026, ...state.userContents];
+    // 搜索范围：标题、作者、简介
+    const results = allContents.filter(item => 
+        (item.title && item.title.toLowerCase().includes(q)) ||
+        (item.author && item.author.toLowerCase().includes(q)) ||
+        (item.desc && item.desc.toLowerCase().includes(q))
+    );
+    renderSearchResults(results, q);
+}
+
+// 渲染搜索结果
+function renderSearchResults(results, keyword) {
+    const container = document.getElementById('contentList');
+    if (!container) return;
+    let html = `<div style="padding:16px;color:var(--secondary);font-size:14px;margin-bottom:12px;">搜索「${keyword}」找到 ${results.length} 条结果</div>`;
+    if (results.length === 0) {
+        html += '<div class="empty-state"><p>未找到相关内容</p><p style="margin-top:10px;font-size:13px;color:var(--secondary);">尝试搜索小说名、作家名或作品简介</p></div>';
+    } else {
+        results.forEach(item => {
+            const typeLabel = TYPE_MAP[item.type] || '📄 内容';
+            const typeClass = TYPE_CLASS[item.type] || '';
+            const imgSrc = item.image || 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=400&fit=crop';
+            html += `
+            <div class="content-card ${typeClass}" onclick="openDetailModal('${item.id}')">
+                <div class="content-cover" style="background-image:url('${imgSrc}')"></div>
+                <div class="content-info">
+                    <div class="content-type">${typeLabel}</div>
+                    <h3 class="content-title">${item.title}</h3>
+                    <p class="content-desc">${item.desc || '暂无简介'}</p>
+                    <div class="content-meta">
+                        <span>✍️ ${item.author || '匿名'}</span>
+                        <span>❤️ ${item.likes || 0}</span>
+                    </div>
+                </div>
+            </div>`;
+        });
+    }
+    container.innerHTML = html;
 }
 
 // ===== 渲染列表 =====
