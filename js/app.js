@@ -862,13 +862,13 @@ function updateUserUI() {
     const userAvatar = document.getElementById("userAvatar");
     const userName = document.getElementById("userName");
     if (state.user && userInfo && loginBtn) {
-        userInfo.classList.add("show");
-        loginBtn.classList.add("hidden");
-        if (userAvatar) userAvatar.textContent = state.user.name[0];
+        userInfo.style.display = 'flex';
+        loginBtn.style.display = 'none';
+        if (userAvatar) userAvatar.textContent = state.user.name ? state.user.name[0] : '用';
         if (userName) userName.textContent = state.user.name;
     } else if (userInfo && loginBtn) {
-        userInfo.classList.remove("show");
-        loginBtn.classList.remove("hidden");
+        userInfo.style.display = 'none';
+        loginBtn.style.display = '';
     }
 }
 
