@@ -612,6 +612,12 @@ function renderCommentsSection(contentId, comments) {
     const isLoggedIn = !!state.user;
     const currentUser = state.user?.name || '匿名用户';
     
+    // 检查该用户对这篇内容的评论次数
+    const MAX_COMMENTS_PER_USER = 3;
+    const commentKey = `gaizi_comment_count_${contentId}_${state.user?.id || ''}`;
+    const currentCount = parseInt(localStorage.getItem(commentKey) || '0');
+    const canComment = currentCount < MAX_COMMENTS_PER_USER;
+    
     // 未登录时显示登录提示
     const loginPrompt = !isLoggedIn ? `
         <div class="comment-login-prompt">
@@ -620,15 +626,16 @@ function renderCommentsSection(contentId, comments) {
         </div>
     ` : '';
     
-    // 登录后显示评论输入区
-    const commentInputArea = isLoggedIn ? `
+    // 登录后可评论或次数已用完提示
+    const commentInputArea = isLoggedIn ? (
+        canComment ? `
         <div class="comment-input-area">
             <span class="author-avatar">${currentUser[0]}</span>
             <div class="comment-input-wrapper">
                 <textarea 
                     id="commentInput_${contentId}" 
                     class="comment-input" 
-                    placeholder="写下你的评论..."
+                    placeholder="写下你的评论...（${currentCount}/3次）"
                     maxlength="500"
                 ></textarea>
                 <div class="comment-input-actions">
@@ -636,7 +643,12 @@ function renderCommentsSection(contentId, comments) {
                 </div>
             </div>
         </div>
-    ` : '';
+        ` : `
+        <div class="comment-login-prompt" style="background:rgba(108,92,231,0.08);">
+            <p>📝 您已评论 ${currentCount}/3 次，该篇评论机会已用完</p>
+        </div>
+        `
+    ) : '';
     
     return `
         <div class="comments-section">
@@ -717,6 +729,9 @@ function submitComment(contentId) {
     
     // 添加评论到开头
     state.comments[contentId].unshift(newComment);
+    
+    // 增加该用户评论计数
+    localStorage.setItem(commentKey, String(currentCount + 1));
     
     // 保存到 localStorage
     localStorage.setItem('gaizi_comments', JSON.stringify(state.comments));
