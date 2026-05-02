@@ -116,6 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 更新用户UI（登录状态）
     updateUserUI();
     
+    // 初始化跑马灯内容
+    updateMarquee();
+    
     // 绑定事件
     bindEvents();
     
@@ -509,6 +512,35 @@ function likeContent(id) {
     showToast('❤️ 点赞成功！', 'success');
     renderContents();
     openDetailModal(id);
+}
+
+// ===== 更新跑马灯内容 =====
+function updateMarquee() {
+    const marqueeContent = document.querySelector('#blogMarqueeInline .blog-marquee-inline-content');
+    if (!marqueeContent) return;
+    
+    let items = [];
+    
+    // 1. 加入热榜新闻（前5条）
+    HOT_NEWS_2026.slice(0, 5).forEach(news => {
+        items.push(`<span>🔥 ${news.title}</span>`);
+    });
+    
+    // 2. 加入用户最新发布的作品提示（前5条）
+    const latestUserContents = state.userContents.slice(0, 5);
+    latestUserContents.forEach(item => {
+        const author = item.author || '匿名用户';
+        items.push(`<span>📢 用户${author}发布了新作品《${item.title}》</span>`);
+    });
+    
+    // 如果没有用户内容，加入默认提示
+    if (latestUserContents.length === 0) {
+        items.push('<span>✏️ 分享你创作的作品信息，让更多人看到它！</span>');
+    }
+    
+    // 重复一次实现无缝滚动
+    const content = items.join('') + items.join('');
+    marqueeContent.innerHTML = content;
 }
 
 // ===== 热榜点赞 =====
