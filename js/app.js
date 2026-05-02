@@ -888,7 +888,7 @@ function updateUserUI() {
     if (state.user && userInfo && loginBtn) {
         userInfo.style.display = 'flex';
         loginBtn.style.display = 'none';
-        if (userAvatar) userAvatar.textContent = state.user.name ? state.user.name[0] : '用';
+        if (userAvatar) userAvatar.textContent = '👤';
         if (userName) userName.textContent = state.user.name;
     } else if (userInfo && loginBtn) {
         userInfo.style.display = 'none';
