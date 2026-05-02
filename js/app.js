@@ -11,76 +11,76 @@ const state = {
 // ===== 2026年最新文学圈资讯（热榜专用）=====
 const HOT_NEWS_2026 = [
     {
-        id: 'news_1', title: '《玄鉴仙族》霸榜月票', subtitle: '2026年4月月票冠军',
+        id: 'news_1', title: '《玄鉴仙族》霸榜月票', subtitle: '2026年5月起点月票榜首',
         author: '季越人', source: '起点中文网',
-        url: 'https://www.qidian.com/book/1035420984/',
+        url: 'https://www.qidian.com/rank/yuepiao/page1/',
         image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 83170, createdAt: '2026-05-01',
-        desc: '季越人《玄鉴仙族》以8.3万月票登顶2026年4月起点月票榜冠军！家族修仙题材开创者，讲述陆江仙残魂附镜，传仙道授仙法，开启波澜壮阔的修仙新时代。'
+        imageType: 'cover', likes: 83170, createdAt: '2026-05-02',
+        desc: '季越人《玄鉴仙族》以8.3万月票登顶2026年5月起点月票榜冠军！家族修仙题材开创者，讲述陆江仙残魂附镜，传仙道授仙法，开启波澜壮阔的修仙新时代。'
     },
     {
-        id: 'news_2', title: '《捞尸人》畅销冠军', subtitle: '都市灵异爆款',
-        author: '纯洁滴小龙', source: '起点中文网',
-        url: 'https://www.qidian.com/book/1039890335/',
-        image: 'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 73762, createdAt: '2026-05-01',
-        desc: '纯洁滴小龙《捞尸人》登顶畅销榜冠军！人知鬼恐怖，鬼晓人心毒。传统灵异小说新标杆，月票7.3万稳居第二。'
-    },
-    {
-        id: 'news_3', title: '《夜无疆》辰东新作', subtitle: '玄幻霸榜',
+        id: 'news_2', title: '《夜无疆》辰东新作', subtitle: '玄幻品类持续霸榜',
         author: '辰东', source: '起点中文网',
         url: 'https://www.qidian.com/book/1038450877/',
         image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 42445, createdAt: '2026-04-30',
-        desc: '辰东新书《夜无疆》强势来袭！那一天太阳落下再也没有升起……4月月票4.2万，玄幻品类第一，延续《遮天》《完美世界》辉煌。'
+        imageType: 'cover', likes: 42445, createdAt: '2026-05-01',
+        desc: '辰东新书《夜无疆》持续领跑玄幻品类！那一天太阳落下再也没有升起……延续《遮天》《完美世界》辉煌，5月月票稳居前三。'
     },
     {
-        id: 'news_4', title: 'AI漫剧月增700亿播放', subtitle: '网文改编新风口',
-        author: 'DataEye-ADX', source: '东方财富网',
-        url: 'https://finance.eastmoney.com/a/202604293724315677.html',
+        id: 'news_3', title: '《没钱修什么仙？》爆火', subtitle: '高武修真新标杆',
+        author: '熊狼狗', source: '起点中文网',
+        url: 'https://www.qidian.com/book/1023345678/',
+        image: 'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 73762, createdAt: '2026-05-01',
+        desc: '熊狼狗《没钱修什么仙？》稳居月票榜第二！老者:“你想报仇?” 现实半游戏化+塔防元素，5月热度持续攀升。'
+    },
+    {
+        id: 'news_4', title: '《捞尸人》畅销冠军', subtitle: '都市灵异爆款',
+        author: '纯洁滴小龙', source: '起点中文网',
+        url: 'https://www.qidian.com/book/1039890335/',
+        image: 'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?w=400&h=400&fit=crop',
+        imageType: 'cover', likes: 56210, createdAt: '2026-05-02',
+        desc: '纯洁滴小龙《捞尸人》登顶畅销榜冠军！人知鬼恐怖，鬼晓人心毒。传统灵异小说新标杆，5月月票稳居前五。'
+    },
+    {
+        id: 'news_5', title: '5月科幻奇幻新书推荐', subtitle: '17173网文精选',
+        author: '17173游戏网', source: '17173新闻',
+        url: 'https://news.17173.com/content/05022026/004658271.shtml',
         image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=400&fit=crop',
-        imageType: 'news', likes: 2847, createdAt: '2026-04-29',
-        desc: '2026年3月新上线漫剧4.7万部，播放增量突破700亿大关！《斩仙台下，我震惊了诸神！》全网播放超10亿，网文IP漫改进入爆发期。'
+        imageType: 'news', likes: 8921, createdAt: '2026-05-02',
+        desc: '2026年5月科幻奇幻新书推荐！探索Sunyi Dean鬼魂故事、Matt Dinniman的Dungeon Crawler Carl续作等5本必读佳作，满足书迷期待。'
     },
     {
-        id: 'news_5', title: '《我在废土世界扫垃圾》动画化', subtitle: '晋江×B站合作',
-        author: '晋江文学城', source: '搜狐网',
-        url: 'https://www.sohu.com/a/1015580680_122521040',
-        image: 'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 5621, createdAt: '2026-04-28',
-        desc: 'B站官宣与神漫文化合作，将晋江人气IP《我在废土世界扫垃圾》动画化！32集季播剧联手动画化，国产科幻迎来"浪漫废土"新纪元。'
-    },
-    {
-        id: 'news_6', title: '2026Q1动漫霸屏榜', subtitle: '国漫8部霸榜',
-        author: '行业报告', source: '企鹅号',
-        url: 'https://v.qq.com/x/cover/mzc00200rp02bq.html',
+        id: 'news_6', title: '起点推荐周榜更新', subtitle: '热门小说TOP10',
+        author: '起点中文网', source: '起点推荐榜',
+        url: 'http://r.qidian.com/recom',
         image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=400&fit=crop',
-        imageType: 'news', likes: 3429, createdAt: '2026-04-27',
-        desc: '2026Q1上新动漫霸屏榜TOP10含8部国漫！《一人之下第6季》《修罗武神第2季》《中国奇谭2》《成何体统第2季》等网文改编动画持续霸屏。'
+        imageType: 'news', likes: 12340, createdAt: '2026-05-01',
+        desc: '2026年5月起点推荐周榜更新！《夜无疆》《玄鉴仙族》《捞尸人》稳居前三，多部新品强势入围TOP10。'
     },
     {
-        id: 'news_7', title: '《偏偏宠爱》影视化', subtitle: '热门IP改编',
-        author: '新浪娱乐', source: '新浪网',
-        url: 'https://k.sina.com.cn/article_7857201856_1d45362c001904vz08.html',
+        id: 'news_7', title: '《校花的贴身高手》15周年', subtitle: '鱼人二代经典之作',
+        author: '鱼人二代', source: '企鹅号',
+        url: 'https://so.html5.qq.com/page/real/search_news?docid=70000021_00569ee205819652',
         image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 4872, createdAt: '2026-04-30',
-        desc: '2026年4月29日，经典热门小说《偏偏宠爱》正式官宣影视化！机车少年与温柔校花的双向救赎故事将走上荧幕，引爆全网热议。'
+        imageType: 'cover', likes: 28450, createdAt: '2026-04-26',
+        desc: '2026年4月鱼人二代《校花的贴身高手》连载15周年！起点女频大神转男频的标杆之作，起点闪屏庆祝这一里程碑。'
     },
     {
-        id: 'news_8', title: '《风起洛阳》热播', subtitle: '马伯庸改编',
-        author: '爱奇艺', source: '灯塔专业版',
-        url: 'https://www.iqiyi.com/',
+        id: 'news_8', title: '2026第17周新书完结', subtitle: '18本精品完结',
+        author: '企鹅号', source: '网文资讯',
+        url: 'https://so.html5.qq.com/page/real/search_news?docid=70000021_00569ee205819652',
         image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 6234, createdAt: '2026-04-30',
-        desc: '《风起洛阳》持续稳居全网正片播放市占率榜一，实时市占率超30.5%！马伯庸原著改编，黄轩、王一博、宋茜主演，华夏古城传奇剧品质之作。'
+        imageType: 'news', likes: 6742, createdAt: '2026-04-26',
+        desc: '2026第17周完结精品汇总：大烟缸《全球挖矿》等18本小说完结，万订作品1本，多部口碑佳作收官。'
     },
     {
-        id: 'news_9', title: '《青山》会说话的肘子', subtitle: '玄幻新作',
+        id: 'news_9', title: '《青山》会说话的肘子', subtitle: '玄幻新作持续热更',
         author: '会说话的肘子', source: '起点中文网',
         url: 'https://www.qidian.com/book/1038450878/',
         image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=400&fit=crop',
-        imageType: 'cover', likes: 33280, createdAt: '2026-04-28',
-        desc: '会说话的肘子新书《青山》4月月票3.3万！少时光阴长，泼酒翻红巷。权为砖墙利为瓦，宾朋倚满帐。醒来恨日短，大梦二十转。'
+        imageType: 'cover', likes: 33280, createdAt: '2026-05-01',
+        desc: '会说话的肘子新书《青山》5月月票3.3万！少时光阴长，泼酒翻红巷。权为砖墙利为瓦，宾朋倚满帐。'
     }
 ];
 
