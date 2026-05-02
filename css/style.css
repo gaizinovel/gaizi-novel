@@ -299,11 +299,11 @@ body {
     width: 100%;
 }
 
-/* 博客按钮旁边的跑马灯 - 温馨暖色 */
+/* 博客按钮旁边的跑马灯 - 浅色版 */
 .blog-marquee-inline {
-    background: linear-gradient(90deg, #FFE4D6 0%, #FFD4C4 50%, #FFE4D6 100%);
+    background: linear-gradient(90deg, #FFF5F0 0%, #FFEDE8 50%, #FFF5F0 100%);
     background-size: 200% 100%;
-    color: var(--accent);
+    color: var(--secondary);
     padding: 12px 28px;
     border-radius: 28px;
     overflow: hidden;
@@ -311,10 +311,10 @@ body {
     flex: 1;
     max-width: 600px;
     min-width: 400px;
-    box-shadow: 0 4px 20px rgba(232,90,79,0.12);
+    box-shadow: 0 4px 20px rgba(232,90,79,0.06);
     animation: warmShimmer 4s linear infinite;
-    font-weight: 700;
-    border: 1px solid rgba(232,90,79,0.15);
+    font-weight: 600;
+    border: 1px solid rgba(232,90,79,0.08);
 }
 
 @keyframes warmShimmer {
