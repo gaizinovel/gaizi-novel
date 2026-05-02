@@ -113,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 加载用户内容
     loadUserContents();
     
+    // 更新用户UI（登录状态）
+    updateUserUI();
+    
     // 绑定事件
     bindEvents();
     

@@ -1195,6 +1195,19 @@ body {
     font-size: 14px;
 }
 
+.comment-login-prompt {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--secondary);
+    font-size: 15px;
+}
+
+.comment-login-prompt p {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
 /* ===== Toast ===== */
 .toast {
     position: fixed;
