@@ -232,6 +232,23 @@ body {
     color: var(--accent);
 }
 
+/* 搜索框内的清除按钮 */
+.search-clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: var(--secondary);
+    cursor: pointer;
+    font-size: 14px;
+    font-style: normal;
+    user-select: none;
+}
+
+.search-clear:hover {
+    color: var(--accent);
+}
+
 .user-area { display: flex; align-items: center; gap: 16px; position: fixed; right: 20px; top: 20px; z-index: 9999; }
 
 /* ===== 按钮 - 温馨渐变 ===== */

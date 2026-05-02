@@ -878,3 +878,12 @@ function handlePublish() {
     }
     openPublishModal();
 }
+
+// ===== 清除搜索 =====
+function clearSearch() {
+    state.isSearching = false;
+    state.searchQuery = '';
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchClear').style.display = 'none';
+    renderContents();
+}
