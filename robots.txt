@@ -1,4 +1,24 @@
+# 盖子小说 robots.txt
+# 允许所有搜索引擎抓取
+
 User-agent: *
 Allow: /
 
-Sitemap: https://gaizinovel.github.io/sitemap.xml
+# Sitemap 位置
+Sitemap: https://gaizinovel.github.io/gaizi-novel/sitemap.xml
+
+# 常见搜索引擎爬虫
+User-agent: Googlebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Sogou
+Allow: /
+
+User-agent: Bytespider
+Allow: /
