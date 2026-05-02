@@ -694,6 +694,15 @@ function submitComment(contentId) {
         return;
     }
     
+    // 检查该用户对这篇内容的评论次数（限制3次）
+    const MAX_COMMENTS_PER_USER = 3;
+    const commentKey = `gaizi_comment_count_${contentId}_${state.user.id}`;
+    const currentCount = parseInt(localStorage.getItem(commentKey) || '0');
+    if (currentCount >= MAX_COMMENTS_PER_USER) {
+        showToast('每篇内容最多评论3次，已用完', 'info');
+        return;
+    }
+    
     const newComment = {
         id: 'c_' + Date.now(),
         author: state.user?.name || '匿名用户',
