@@ -200,6 +200,8 @@ function doSearch() {
 function renderSearchResults(results, keyword) {
     const container = document.getElementById('contentList');
     if (!container) return;
+    // 显示清除按钮
+    document.getElementById('searchClear').style.display = 'inline';
     let html = `<div style="padding:16px;color:var(--secondary);font-size:14px;margin-bottom:12px;">搜索「${keyword}」找到 ${results.length} 条结果</div>`;
     if (results.length === 0) {
         html += '<div class="empty-state"><p>未找到相关内容</p><p style="margin-top:10px;font-size:13px;color:var(--secondary);">尝试搜索小说名、作家名或作品简介</p></div>';
@@ -230,6 +232,9 @@ function renderSearchResults(results, keyword) {
 function renderContents() {
     const container = document.getElementById('contentList');
     if (!container) return;
+    
+    // 搜索状态下不切换，保持搜索结果
+    if (state.isSearching) return;
     
     let html = '';
     
