@@ -405,8 +405,9 @@ function submitContent(e) {
     closePublishModal();
     showToast(pinned ? '✅ 发布成功并已置顶！' : '✅ 发布成功！', 'success');
     
-    // 刷新显示
+    // 刷新显示和跑马灯
     renderContents();
+    updateMarquee();
 }
 
 // ===== 详情弹窗（用户内容）=====
