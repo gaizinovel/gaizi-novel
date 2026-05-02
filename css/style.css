@@ -1305,6 +1305,109 @@ body {
     font-size: 12px;
 }
 
+/* ===== 登录/注册样式 ===== */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info .user-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+}
+
+.user-info .user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.btn-logout {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--secondary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+    background: rgba(239,68,68,0.06);
+}
+
+.modal-small { max-width: 420px; }
+
+.login-header { text-align: center; margin-bottom: 28px; }
+
+.login-header h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.login-header p { color: var(--secondary); font-size: 14px; }
+
+.login-form { margin-bottom: 20px; }
+
+.phone-input-row { display: flex; gap: 10px; }
+.phone-input-row input { flex: 1; }
+
+.btn-send-code {
+    padding: 14px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.btn-send-code:hover:not(:disabled) {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.btn-send-code:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.code-sent-msg { text-align: center; margin-bottom: 24px; }
+.code-icon { font-size: 48px; margin-bottom: 12px; }
+.code-sent-msg p { font-size: 16px; font-weight: 600; color: var(--primary); }
+.code-hint { font-size: 13px; color: var(--secondary); font-weight: 400; margin-top: 6px; }
+
+
+.btn-text {
+    background: transparent;
+    border: none;
+    color: var(--secondary);
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: var(--transition);
+}
+
+.btn-text:hover { color: var(--accent); }
+
+.login-tip { text-align: center; color: var(--secondary); font-size: 12px; }
+.login-tip a { color: var(--accent); text-decoration: none; }
+.login-tip a:hover { text-decoration: underline; }
+.vip-note { margin-top: 8px; color: var(--accent); font-weight: 600; }
+
+#loginBtn.hidden { display: none; }
+#userInfo.show { display: flex; }
+
 /* ===== 滚动条 ===== */
 ::-webkit-scrollbar {
     width: 6px;
