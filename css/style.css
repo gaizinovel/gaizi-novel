@@ -249,7 +249,7 @@ body {
     color: var(--accent);
 }
 
-.user-area { display: flex; align-items: center; gap: 16px; position: fixed; right: 20px; top: 20px; z-index: 9999; }
+.user-area { display: flex; align-items: center; gap: 16px; margin-left: auto; }
 
 /* ===== 按钮 - 温馨渐变 ===== */
 .btn {
