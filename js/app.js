@@ -763,28 +763,28 @@ function closeLoginModal() {
 function sendCode() {
     const phone = document.getElementById("phoneInput")?.value.trim();
     if (!phone || phone.length !== 11) {
-        showToast("��������ȷ��11λ�ֻ���", "error");
+        showToast('请输入正确的11位手机号', 'error');
         return;
     }
     pendingPhone = phone;
     const btn = document.getElementById("sendCodeBtn");
-    if (btn) { btn.disabled = true; btn.textContent = "������..."; }
+    if (btn) { btn.disabled = true; btn.textContent = '发送中...'; }
     setTimeout(() => {
         const fakeCode = Math.floor(100000 + Math.random() * 900000);
         localStorage.setItem("gaizi_verify_code_" + phone, fakeCode.toString());
         localStorage.setItem("gaizi_verify_time_" + phone, Date.now().toString());
-        showToast("ģ����֤�룺" + fakeCode, "info");
-        if (btn) { btn.textContent = "�ѷ���"; }
+        showToast('模拟验证码：' + fakeCode, 'info');
+        if (btn) { btn.textContent = '已发送'; }
         document.getElementById("loginStep1").style.display = "none";
         document.getElementById("loginStep2").style.display = "";
         document.getElementById("codeInput2").focus();
         let countdown = 60;
         const timer = setInterval(() => {
             countdown--;
-            if (btn) btn.textContent = countdown + "�������";
+            if (btn) btn.textContent = countdown + '秒后重发';
             if (countdown <= 0) {
                 clearInterval(timer);
-                if (btn) { btn.disabled = false; btn.textContent = "���·���"; }
+                if (btn) { btn.disabled = false; btn.textContent = '重新发送'; }
             }
         }, 1000);
     }, 800);
@@ -800,27 +800,27 @@ function submitLogin() {
     const phone = pendingPhone || document.getElementById("phoneInput")?.value.trim();
     const code = document.getElementById("codeInput")?.value.trim() || document.getElementById("codeInput2")?.value.trim();
     if (!code || code.length !== 6) {
-        showToast("������6λ��֤��", "error");
+        showToast('请输入6位验证码', 'error');
         return;
     }
     const savedCode = localStorage.getItem("gaizi_verify_code_" + phone);
     const savedTime = localStorage.getItem("gaizi_verify_time_" + phone);
     if (!savedCode || !savedTime) {
-        showToast("���Ȼ�ȡ��֤��", "error");
+        showToast('请先获取验证码', 'error');
         return;
     }
     if (Date.now() - parseInt(savedTime) > 300000) {
-        showToast("��֤���ѹ��ڣ������»�ȡ", "error");
+        showToast('验证码已过期，请重新获取', 'error');
         return;
     }
     if (code !== savedCode) {
-        showToast("��֤���������������", "error");
+        showToast('验证码错误，请重新输入', 'error');
         return;
     }
     const user = {
         id: "user_" + Date.now(),
         phone: phone,
-        name: "�û�" + phone.slice(-4),
+        name: '用户' + phone.slice(-4),
         createdAt: new Date().toISOString()
     };
     state.user = user;
@@ -829,14 +829,14 @@ function submitLogin() {
     localStorage.removeItem("gaizi_verify_time_" + phone);
     closeLoginModal();
     updateUserUI();
-    showToast("��¼�ɹ�����ӭ " + user.name, "success");
+    showToast('登录成功，欢迎 ' + user.name, 'success');
 }
 
 function logout() {
     state.user = null;
     localStorage.removeItem("gaizi_user");
     updateUserUI();
-    showToast("���˳���¼", "info");
+    showToast('已退出登录', 'info');
 }
 
 function updateUserUI() {
@@ -857,7 +857,7 @@ function updateUserUI() {
 
 function handlePublish() {
     if (!state.user) {
-        showToast("���ȵ�¼���ٷ�������", "info");
+        showToast('请先登录再发布内容', 'info');
         openLoginModal();
         return;
     }
