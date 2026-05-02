@@ -1464,6 +1464,8 @@ body {
 .vip-note { margin-top: 8px; color: var(--accent); font-weight: 600; }
 
 #loginBtn.hidden { display: none; }
+
+.user-info.show { display: flex !important; align-items: center; gap: 10px; }
 #userInfo.show { display: flex; }
 
 /* ===== 滚动条 ===== */

@@ -537,21 +537,23 @@ function updateMarquee() {
     
     let items = [];
     
-    // 1. 加入热榜新闻（前5条）
-    HOT_NEWS_2026.slice(0, 5).forEach(news => {
-        items.push(`<span>🔥 ${news.title}</span>`);
-    });
+    // 获取最新用户发布的作品（按时间倒序）
+    const latestWorks = state.userContents
+        .slice()
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 8);
     
-    // 2. 加入用户最新发布的作品提示（前5条）
-    const latestUserContents = state.userContents.slice(0, 5);
-    latestUserContents.forEach(item => {
-        const author = item.author || '匿名用户';
-        items.push(`<span>📢 用户${author}发布了新作品《${item.title}》</span>`);
-    });
-    
-    // 如果没有用户内容，加入默认提示
-    if (latestUserContents.length === 0) {
-        items.push('<span>✏️ 分享你创作的作品信息，让更多人看到它！</span>');
+    if (latestWorks.length > 0) {
+        latestWorks.forEach(item => {
+            const author = item.author || '匿名用户';
+            const typeLabel = item.type === 'novel' ? '📖 小说' : item.type === 'author' ? '✍️ 作家' : '🎨 作品';
+            const likesStr = item.likes > 0 ? ` ❤️${item.likes}` : '';
+            items.push(`<span>${typeLabel} 《${item.title}》— ${author}${likesStr}</span>`);
+        });
+    } else {
+        // 没有作品时显示引导
+        items.push('<span>👋 欢迎来到盖子小说！登录后分享你的作品吧～</span>');
+        items.push('<span>✏️ 发布小说、作家、作品信息，让更多读者发现！</span>');
     }
     
     // 重复一次实现无缝滚动
