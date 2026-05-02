@@ -26,6 +26,7 @@
             </a>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="搜索标题、简介..." autocomplete="off">
+                <button class="btn-append" id="publishBtn" onclick="handlePublish()">✏️ 分享发布</button>
                 <button class="search-btn" onclick="doSearch()">🔍</button>
             </div>
             <div class="user-area" id="userArea">
@@ -35,7 +36,6 @@
                     <button class="btn-logout" onclick="logout()">退出</button>
                 </div>
                 <button class="btn btn-primary" id="loginBtn" onclick="openLoginModal()">🔐 登录</button>
-                <button class="btn btn-primary" id="publishBtn" onclick="handlePublish()">✏️ 分享发布</button>
             </div>
         </div>
     </header>

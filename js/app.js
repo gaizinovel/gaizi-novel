@@ -4,6 +4,8 @@ const state = {
     user: null,
     userContents: [],
     currentFilter: 'all',
+    isSearching: false,  // 搜索状态标志
+    searchQuery: '',       // 当前搜索关键词
     userLikes: [],  // 用户已点赞的内容ID列表
     comments: {}    // 评论数据 { contentId: [comment1, comment2, ...] }
 };
@@ -158,7 +160,11 @@ function loadUserContents() {
 
 // ===== 筛选切换 =====
 function filterByType(type) {
+    // 切换标签时清除搜索状态
+    state.isSearching = false;
     state.currentFilter = type;
+    state.searchQuery = '';
+    document.getElementById('searchInput').value = '';
     
     // 更新按钮样式
     document.querySelectorAll('.filter-tag').forEach(btn => {
@@ -172,9 +178,13 @@ function filterByType(type) {
 function doSearch() {
     const q = document.getElementById('searchInput').value.trim().toLowerCase();
     if (!q) {
+        state.isSearching = false;
+        state.searchQuery = '';
         renderContents();
         return;
     }
+    state.isSearching = true;
+    state.searchQuery = q;
     // 合并热榜和用户内容
     const allContents = [...HOT_NEWS_2026, ...state.userContents];
     // 搜索范围：标题、作者、简介

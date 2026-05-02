@@ -209,9 +209,27 @@ body {
     transition: var(--transition);
 }
 
-.search-btn:hover { 
+.search-btn:hover {
     color: var(--accent);
     transform: scale(1.1);
+}
+
+/* 搜索框内的分享发布按钮 */
+.btn-append {
+    padding: 8px 16px;
+    border: none;
+    border-left: 1px solid var(--border);
+    background: transparent;
+    color: var(--secondary);
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-append:hover {
+    background: rgba(232,90,79,0.08);
+    color: var(--accent);
 }
 
 .user-area { display: flex; align-items: center; gap: 16px; position: fixed; right: 20px; top: 20px; z-index: 9999; }
